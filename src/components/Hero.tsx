@@ -14,18 +14,20 @@ const Hero = ({title = 'Avengers Endgame', score = 10}) => {
             return 'border-red-400'
         }
     };
-
     return(
-        <header className='relative min-h-screen' >
+        <header className='box-border relative min-h-screen -mb-32' >
             <img className='object-cover object-center h-full w-full' 
                 src={placeholder} 
                 alt='Filme em destaque' 
             />
+            <div className='absolute left-0 bottom-0 w-full h-64 bg-gradient-to-b from-transparent to-black'>
+
+            </div>
             <article className='absolute bottom-0 mb-64 px-8'>
-                <p className='text-2xl'>
+                <p className='text-2xl mb-4'>
                     Assistir agora:
                 </p>
-                <h2 className='text-5xl font-bold'>
+                <h2 className='mb-4 text-5xl font-bold'>
                     {title}
                 </h2>
                 <p className='text-base'>
@@ -40,7 +42,7 @@ const Hero = ({title = 'Avengers Endgame', score = 10}) => {
                     Minha Lista
                 </button>
             </article>
-        </header>
+        </header>        
     );
 };
 export default Hero;
