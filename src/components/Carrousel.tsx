@@ -2,14 +2,11 @@ import React from 'react';
 import Slick from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import mockData, {Movie} from '../data/mockData';
+import Poster from './Poster';
 
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const Poster = ({cover, title}: Movie, index: number) => (
-    <article key={index}>
-        <img src={cover} alt={title}/>
-    </article>    
-); 
+import './Carrousel.css';
 
 interface CarrouselData {
     title?: string;
@@ -39,8 +36,8 @@ const Carrousel = ({title = 'Carrousel', data = mockData}: CarrouselData) => {
         nextArrow: <SlickArrow direction={Direction.right}/>,
     };
     return (
-        <section>
-            <h2 className='relative z-10 font-bold text-2xl ml-6 mb-4'>{title}</h2>
+        <section className='carrousel'>
+            <h2 className='relative z-10 font-bold text-2xl ml-8'>{title}</h2>
             <Slick className='relative mb-8' {...options}>
                 {data.map((movie, index) => Poster(movie, index))}
             </Slick> 
