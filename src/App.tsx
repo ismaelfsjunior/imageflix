@@ -3,6 +3,7 @@ import axios from 'axios';
 import CONST from './data/constants';
 import Hero from './components/Hero';
 import NavBar from './components/Navbar';
+import Footer from './components/Footer';
 import Carrousel from './components/Carrousel';
 import './input.css';
 
@@ -13,30 +14,45 @@ const App = () => {
   const {URL, APISTRING } = CONST;
 
   const [movies , setMovies ] = useState<any[]>([]);
+  const [series, setSeries ] = useState<any[]>([]);
   const moviesUrl = `${URL}/discover/movie${APISTRING}&sort_by=popularity.desc`
-  
-  const getFeaturedMovie = () => movies && movies[2];
+  const serieUrl = `${URL}/discover/tv${APISTRING}&sort_by=popularity.desc`
 
   useEffect( () => {
     const fetchData = async () => {
       try {
         const moviesData = await axios.get(moviesUrl);
         setMovies(moviesData.data.results);
+
+        const serieData = await axios.get(serieUrl);
+        setSeries(serieData.data.results);        
       } catch (error) {
         setMovies([]);
+        setSeries([]);
       }
     }
     fetchData();
-  }, [moviesUrl]);
+  }, [moviesUrl, serieUrl]);
 
   //useEffect(() => movies && console.log(movies), [movies])
+  const getFeaturedMovie = () => movies && movies[0];
+  
+  const getMovieList = () => {
+    if (movies) {
+      const [featured, ...movieList] = movies;     
+      return movieList;
+    }
+    return [];
+  }
+
   return (
     <div className="m-auto antialiased bg-black text-white">
       <Hero {...getFeaturedMovie()}/>
       <NavBar />
-      <Carrousel />
-      <Carrousel />
-      <Carrousel />
+      <Carrousel title='Filmes' data={getMovieList()}/>
+      <Carrousel title='Serie' data={series}/>
+      <Carrousel title='outros'/>
+      <Footer />
     </div>
   );
 };

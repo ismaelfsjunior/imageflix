@@ -15,7 +15,7 @@ const Hero = ({ backdrop_path = null, title = 'Avengers Endgame', vote_average =
     return (
         <header className='box-border relative min-h-screen -mb-32' >
             <img className='object-cover object-center h-full w-full' 
-                src={backdrop_path ? `${IMAGEURL}${backdrop_path}` : placeholder} 
+                src={backdrop_path ? `${IMAGEURL}/original/${backdrop_path}` : placeholder} 
                 alt='Filme em destaque' 
             />
             <div className='absolute left-0 bottom-0 w-full h-64 bg-gradient-to-b from-transparent to-black'>
