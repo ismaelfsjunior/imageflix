@@ -5,7 +5,7 @@ import cover3 from '../assets/movie3.jpg';
 export interface Movie {
     title: string;
     cover: string;
-    score?: number | string; 
+    score?: number; // | string; 
 }
 
 const mockData: Movie[] = [
