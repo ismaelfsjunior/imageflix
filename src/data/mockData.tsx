@@ -8,7 +8,19 @@ export interface Movie {
     cover?: string;
     poster_path?: string;
     vote_average?: number; // | string; 
-}
+    movie_id?: string;
+    tv_id?: string;
+};
+
+export enum TitleType {
+    Movie = 'movie',
+    Serie = 'tv',
+  };
+  
+  export interface Title {
+    type: TitleType;
+    id: number | string;
+  };
 
 const mockData: Movie[] = [
     {
